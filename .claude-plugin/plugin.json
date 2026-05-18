@@ -1,0 +1,19 @@
+{
+  "name": "heuristic-learning-kit",
+  "version": "0.1.0",
+  "description": "Scaffolding and templates for Heuristic Learning experiments (Weng 2026 — Learning Beyond Gradients). Provides /hs-new, /hs-fit-check, /hs-iterate skills plus deterministic-game, stochastic-game, and classification templates with working examples (flappy, blackjack, AITL).",
+  "author": {
+    "name": "Zheyuan Zhao",
+    "url": "https://github.com/nittygritty-zzy"
+  },
+  "homepage": "https://github.com/nittygritty-zzy/heuristic-learning-kit",
+  "repository": "https://github.com/nittygritty-zzy/heuristic-learning-kit.git",
+  "license": "MIT",
+  "keywords": [
+    "heuristic-learning",
+    "claude-code",
+    "scaffolding",
+    "weng-2026",
+    "learning-beyond-gradients"
+  ]
+}

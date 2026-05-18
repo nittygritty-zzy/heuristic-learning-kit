@@ -1,0 +1,9 @@
+trial_index,timestamp,kind,trial_name,ev,se,ci95_low,ci95_high,inferences,n_hands,cumulative_inferences,notes
+0,2026-05-17T18:44:51-07:00,eval,baseline_v0_always_stand,-0.1594,0.0044,-0.1680,-0.1507,50000,50000,50000,naive baseline: act always returns 0
+1,2026-05-17T18:46:42-07:00,eval,update_v1_mimic_dealer,-0.0503,0.0044,-0.0588,-0.0417,92966,50000,142966,hit until total >= 17; ignores dealer upcard and soft/hard
+2,2026-05-17T18:47:13-07:00,eval,update_v2_dealer_upcard_aware,-0.0185,0.0044,-0.0272,-0.0099,83318,50000,226284,basic-strategy hit/stand: stand hard 12-16 vs dealer 2-6; soft 17 hit; soft 18+ stand
+3,2026-05-17T18:47:39-07:00,eval,update_v3_soft_18_hit_vs_strong,-0.0173,0.0044,-0.0260,-0.0087,83912,50000,310196,soft 18 hits vs dealer 9/10/A; also refactored for clarity (soft block before hard)
+4,2026-05-17T18:47:56-07:00,probe,probe_v3_confirm_soft_18_gain,,,,,1681436,1000000,1991632,200k hands per seed (1M total) to disambiguate v3 vs v2; expect EV gain ~0.001 from soft 18 fix
+5,2026-05-17T18:56:54-07:00,eval,update_v4_add_doubles,-0.0032,0.0050,-0.0130,+0.0066,115488,50000,2107120,"doubles: hard 11 vs 2-10, hard 10 vs 2-9, hard 9 vs 3-6; soft 13-14 vs 5-6, 15-16 vs 4-6, 17-18 vs 3-6"
+6,2026-05-17T18:57:26-07:00,eval,update_v5_add_splits,+0.0002,0.0051,-0.0097,+0.0102,117308,50000,2224428,"splits: A,A and 8,8 always; 2/3/7 vs 2-7; 6 vs 2-6; 9 vs 2-6,8,9; never 4/5/10. doubles unchanged from v4"
+7,2026-05-17T18:57:49-07:00,probe,probe_v5_confirm_1M_hands,,,,,11757817,5000000,13982245,1M hands per seed (5M total) to find v5's true EV. Expected near -0.005 (textbook basic strategy).

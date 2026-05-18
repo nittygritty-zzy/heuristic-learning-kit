@@ -1,0 +1,17 @@
+trial_index,timestamp,kind,trial_name,score_mean,score_min,score_max,inferences,n_seeds,cumulative_inferences,notes
+0,2026-05-17T11:04:59-07:00,eval,baseline_v0_never_flap,0.0000,0,0,130,5,130,naive: act always returns 0
+1,2026-05-17T11:05:15-07:00,eval,update_v1_follow_center,2.6000,0,6,1193,5,1323,reactive: flap when bird_y > gap_center (no velocity awareness)
+2,2026-05-17T11:05:38-07:00,eval,update_v2_velocity_aware,0.0000,0,0,315,5,1638,predict y in 3 ticks using vy + gravity; flap on predicted overshoot
+3,2026-05-17T11:06:38-07:00,eval,update_v3_velocity_projection,0.0000,0,0,315,5,1953,project current vy forward 4 ticks; no gravity term (avoids the v2 over-flap)
+4,2026-05-17T17:50:56-07:00,eval,update_v4_target_gap_bottom_bias,0.0000,0,0,333,5,2286,"target = gap_top + 25 (lower half of gap), so flap rebound stays inside gap rather than clipping gap_top"
+5,2026-05-17T17:51:28-07:00,eval,update_v5_target_gap_top_plus_45,0.4000,0,2,470,5,2756,fixed y-axis confusion: gap_top+45 is deep in lower half of gap; flap rebound stays inside
+6,2026-05-17T17:53:06-07:00,eval,update_v6_target_30_lookahead_1,0.0000,0,0,325,5,3081,target gap_top+30 with 1-tick vy lookahead; flap one tick before crossing target
+7,2026-05-17T17:54:18-07:00,eval,update_v7_target_42_lookahead_1,9.6000,0,33,3467,5,6548,"target gap_top+42 + 1-tick lookahead; deep target keeps rebound below gap_top, lookahead prevents fall-through"
+8,2026-05-17T17:56:02-07:00,eval,update_v8_target_45_lookahead_1,63.0000,11,76,20778,5,27326,"target gap_top+45 + 1-tick lookahead; math: min_y after rebound = target-43 = gap_top+2 (safe), max body bottom = target+20 = gap_top+65 (safe)"
+9,2026-05-17T17:57:53-07:00,eval,update_v9_asymmetric_lookahead,6.4000,1,11,2403,5,29729,"lookahead=2 when vy>8 (free-fall between pipes), else 1; fixes seed 100 inter-pipe transition"
+10,2026-05-17T17:58:27-07:00,eval,update_v10_revert_to_v8,63.0000,11,76,20778,5,50507,"reverted from v9; v8 (target+45, lookahead=1) remains best at 63.00"
+11,2026-05-17T18:05:30-07:00,eval,update_v11_reactive_deep_target,0.4000,0,2,470,5,50977,"drop lookahead; pure-reactive at target gap_top+45. Inter-pipe vy=12 rebound math: flap at body_bottom=gap_top+69, rebound to gap_top+5 (safe both sides)"
+12,2026-05-17T18:08:54-07:00,eval,update_v12_target_49_lookahead_1,76.0000,76,76,25000,5,75977,GAP_BIAS=49 (right at safe-zone edge); math gives margin 2 above gap_top and 12 below gap_bottom even at vy=12
+13,2026-05-17T18:09:06-07:00,probe,probe_v2_unseen_seeds_for_v12,,,,100000,20,175977,verify GAP_BIAS=49 generalizes beyond eval seeds 100-104
+14,2026-05-17T18:12:25-07:00,probe,probe_v3_ceiling_search_100k,,,,900000,9,1075977,find real ceiling at max_ticks=100k. v12 policy theoretical max = (100000-80)/65 + 1 = 1538
+15,2026-05-17T18:17:54-07:00,eval,simplify_v1_remove_dead_detectors_wire_in_policy,76.0000,76,76,25000,5,1100977,"removed dead gap_center/is_below_gap_center; wired policy.py to import next_gap_top + predicted_y from detectors. policy 38→24 lines, detectors 24→21 lines (-17 total). Score must be unchanged."

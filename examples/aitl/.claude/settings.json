@@ -1,0 +1,38 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python aitl_hl.py:*)",
+      "Bash(python3 aitl_hl.py:*)",
+      "Bash(python -m py_compile:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git status)",
+      "Bash(wc -l:*)",
+      "Read(./trials.jsonl)",
+      "Read(./golden.jsonl)",
+      "Read(./paraphrases.jsonl)",
+      "Read(./summary.csv)",
+      "Read(./STATUS.md)",
+      "Read(./memory.md)",
+      "Read(./policy.py)",
+      "Read(./detectors.py)",
+      "Read(./aitl_hl.py)",
+      "Read(./CLAUDE.md)",
+      "Edit(./policy.py)",
+      "Edit(./detectors.py)",
+      "Edit(./memory.md)"
+    ],
+    "deny": [
+      "Edit(./trials.jsonl)",
+      "Edit(./golden.jsonl)",
+      "Edit(./paraphrases.jsonl)",
+      "Edit(./summary.csv)",
+      "Edit(./STATUS.md)",
+      "Write(./trials.jsonl)",
+      "Write(./golden.jsonl)",
+      "Write(./paraphrases.jsonl)",
+      "Write(./summary.csv)",
+      "Write(./STATUS.md)"
+    ]
+  }
+}

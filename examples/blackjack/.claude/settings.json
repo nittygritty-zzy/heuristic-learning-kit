@@ -1,0 +1,37 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python blackjack_hs.py:*)",
+      "Bash(python3 blackjack_hs.py:*)",
+      "Bash(python -m py_compile:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git status)",
+      "Read(./trials.jsonl)",
+      "Read(./eval_seeds.jsonl)",
+      "Read(./summary.csv)",
+      "Read(./STATUS.md)",
+      "Read(./memory.md)",
+      "Read(./policy.py)",
+      "Read(./detectors.py)",
+      "Read(./blackjack.py)",
+      "Read(./blackjack_hs.py)",
+      "Read(./CLAUDE.md)",
+      "Edit(./policy.py)",
+      "Edit(./detectors.py)",
+      "Edit(./memory.md)"
+    ],
+    "deny": [
+      "Edit(./trials.jsonl)",
+      "Edit(./eval_seeds.jsonl)",
+      "Edit(./summary.csv)",
+      "Edit(./STATUS.md)",
+      "Edit(./blackjack.py)",
+      "Write(./trials.jsonl)",
+      "Write(./eval_seeds.jsonl)",
+      "Write(./summary.csv)",
+      "Write(./STATUS.md)",
+      "Write(./blackjack.py)"
+    ]
+  }
+}
