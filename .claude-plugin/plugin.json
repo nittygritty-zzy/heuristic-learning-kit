@@ -1,7 +1,7 @@
 {
   "name": "heuristic-learning-kit",
   "version": "0.1.0",
-  "description": "Scaffolding and templates for Heuristic Learning experiments (Weng 2026 — Learning Beyond Gradients). Provides /hs-new, /hs-fit-check, /hs-iterate skills plus deterministic-game, stochastic-game, and classification templates with working examples (flappy, blackjack, AITL).",
+  "description": "Scaffolding and templates for Heuristic Learning experiments (Weng 2026 — Learning Beyond Gradients). Provides /hs-new, /hs-fit-check, /hs-iterate, /hs-flywheel skills plus deterministic-game, stochastic-game, and classification templates with working examples (flappy, blackjack, AITL).",
   "author": {
     "name": "Zheyuan Zhao",
     "url": "https://github.com/nittygritty-zzy"

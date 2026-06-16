@@ -3,9 +3,9 @@
 This is a Claude Code plugin providing scaffolding for **Heuristic Learning
 (HL)** experiments per Weng 2026, *Learning Beyond Gradients*.
 
-When a user opens this repo or has this plugin installed, they get three
-slash commands: `/hs-new`, `/hs-fit-check`, `/hs-iterate`. Source those
-skills via `skills/<name>/SKILL.md`.
+When a user opens this repo or has this plugin installed, they get four
+slash commands: `/hs-new`, `/hs-fit-check`, `/hs-iterate`, `/hs-flywheel`.
+Source those skills via `skills/<name>/SKILL.md`.
 
 ## Repo layout
 
@@ -19,7 +19,8 @@ skills via `skills/<name>/SKILL.md`.
 ├── skills/                   # plugin-provided skills
 │   ├── hs-new/SKILL.md       # /hs-new — copy a template to a new project
 │   ├── hs-fit-check/SKILL.md # /hs-fit-check — 5-question litmus test
-│   └── hs-iterate/SKILL.md   # /hs-iterate — generic update step
+│   ├── hs-iterate/SKILL.md   # /hs-iterate — generic update step
+│   └── hs-flywheel/SKILL.md  # /hs-flywheel — autonomous iterate-until-converged loop
 ├── templates/                # categorized by HS shape; /hs-new copies from here
 │   ├── deterministic-game/   # (same content as examples/flappy)
 │   ├── stochastic-game/      # (same content as examples/blackjack)

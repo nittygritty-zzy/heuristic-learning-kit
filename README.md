@@ -16,8 +16,9 @@ This kit ships:
 - **Three named examples** — the same three projects, but categorized by
   *domain* (Flappy Bird, Blackjack, customer-support AITL). Read end-to-
   end as references.
-- **Three skills** — `/hs-new`, `/hs-fit-check`, `/hs-iterate` — to
-  bootstrap and maintain a new experiment from inside Claude Code.
+- **Four skills** — `/hs-new`, `/hs-fit-check`, `/hs-iterate`,
+  `/hs-flywheel` — to bootstrap, maintain, and autonomously iterate a new
+  experiment from inside Claude Code.
 
 ## Install
 
@@ -25,13 +26,14 @@ This kit ships:
 claude plugin install nittygritty-zzy/heuristic-learning-kit
 ```
 
-After install, three slash commands are available in any Claude Code session:
+After install, four slash commands are available in any Claude Code session:
 
 | Command          | What it does                                                    |
 |------------------|-----------------------------------------------------------------|
 | `/hs-fit-check`  | Run the 5-question litmus test on a candidate domain.           |
 | `/hs-new`        | Scaffold a new HS project from one of the three templates.      |
 | `/hs-iterate`    | Generic update step (read STATUS, edit policy, eval, record).   |
+| `/hs-flywheel`   | Run the iterate loop autonomously until a stop predicate fires. |
 
 ## Quickstart
 
