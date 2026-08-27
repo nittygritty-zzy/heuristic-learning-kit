@@ -36,7 +36,8 @@ Every HS project's `CLAUDE.md` enumerates these as hard rules:
 3. **All-green regression gate.** Every edit ends with the driver's
    `eval` or `replay` showing all goldens pass (deterministic envs) or
    `is_new_best` returning `yes` / `maybe` with explicit confirmation
-   (stochastic envs).
+   (stochastic envs). `unchanged` (exit 3) is also an accept: it is the
+   expected verdict for the mandatory compression pass of invariant #5.
 
 4. **Failed directions get written down.** Abandoned approaches go
    into `memory.md` under "Failed directions" with the reason. The next

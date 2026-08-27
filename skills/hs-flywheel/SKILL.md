@@ -30,6 +30,11 @@ gate crowns noise as progress:
   deadlocks on human judgment — stop and tell the user.
 - `git status` is clean (so reverts are well-defined).
 - The driver exposes `eval` and `is_new_best` (look for `*_hs.py`).
+- `is_new_best` exit codes: **0** yes · **1** regression · **2** improved but
+  CI overlaps (stochastic drivers only) · **3** unchanged. Treat 3 as accept:
+  invariant #6 mandates a compression pass, and compression preserves score
+  by design, so a driver without verdict 3 rejects the step CLAUDE.md
+  requires.
 
 Record the loop's baseline: run `python <driver>.py eval --trial-name
 "flywheel_v0_baseline" --notes "flywheel start" --files policy.py
@@ -76,6 +81,10 @@ LOOP until a stop predicate fires (see below):
                  re-eval as "simplify_v{tick}_<what>".
        - maybe → probe at 5–10× sample size (see ITERATION_GUIDE).
                  confirmed → treat as yes. unconfirmed → treat as no.
+       - unchanged → the compression pass preserved behaviour exactly.
+                 ACCEPT and keep the edit; this is the expected verdict for
+                 step "yes" above, not a failure. Do NOT increment
+                 consecutive_no — a compression that compressed is progress.
        - no    → revert policy.py/detectors.py to best. consecutive_no += 1.
                  Append the **Lesson** to memory.md "Failed directions".
   4. tick += 1.

@@ -252,7 +252,15 @@ def cmd_is_new_best() -> None:
     if current > prev_best:
         print(f"yes (score_mean={current:.2f} > prev_best={prev_best:.2f})")
         sys.exit(0)
-    print(f"no (score_mean={current:.2f} <= prev_best={prev_best:.2f})")
+    if current == prev_best:
+        # Invariant #6 mandates a compression pass after every accepted best,
+        # and compression deliberately preserves score. Without a distinct
+        # verdict the driver rejects the very step CLAUDE.md requires, and the
+        # loop cannot tell "compressed cleanly" from "made it worse".
+        print(f"unchanged (score_mean={current:.2f} == prev_best; "
+              f"acceptable for a compression pass)")
+        sys.exit(3)
+    print(f"no (score_mean={current:.2f} < prev_best={prev_best:.2f})")
     sys.exit(1)
 
 
