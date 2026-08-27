@@ -57,6 +57,8 @@ the project's `<domain>_hs.py`.
 7. **Check the regression gate.**
    ```bash
    python <driver>.py is_new_best
+   # 0 yes · 1 regression · 2 CI-overlap maybe · 3 unchanged (accept:
+   # a compression pass preserves score by design)
    ```
    Three outcomes:
    - `yes` (exit 0): confident improvement. Continue to step 8.

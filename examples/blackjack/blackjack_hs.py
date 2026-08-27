@@ -8,7 +8,8 @@ Subcommands:
     seeds_add           append seeds to eval_seeds.jsonl (humans only)
     report              print the agent feedback buffer
     replay              re-run eval set deterministically
-    is_new_best         exit 0 if latest eval EV beats prior best
+    is_new_best         exit 0 yes / 1 regression / 2 CI-overlap maybe
+                        / 3 unchanged (compression pass)
                         (with 1-sigma CI overlap protection)
 
 Score = EV per hand (mean unit return). Each "seed" plays
@@ -257,8 +258,15 @@ def cmd_is_new_best() -> None:
     prior_evs = [t["ev"] for t in evals[:-1]]
     prev_best = max(prior_evs)
     prev_best_trial = max(evals[:-1], key=lambda t: t["ev"])
-    if current["ev"] <= prev_best:
-        print(f"no (EV={current['ev']:+.4f} <= prev_best={prev_best:+.4f})")
+    if current["ev"] == prev_best:
+        # Invariant #6 mandates a compression pass after every accepted best,
+        # and compression deliberately preserves EV. Exit 3 keeps that distinct
+        # from 1 (regression) and from 2 (improved but CI overlaps).
+        print(f"unchanged (EV={current['ev']:+.4f} == prev_best; "
+              f"acceptable for a compression pass)")
+        sys.exit(3)
+    if current["ev"] < prev_best:
+        print(f"no (EV={current['ev']:+.4f} < prev_best={prev_best:+.4f})")
         sys.exit(1)
     # Require CI95 separation: current.lower > prev_best.upper
     prev_best_high = prev_best_trial.get("ci95_high", prev_best)
